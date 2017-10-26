@@ -13,11 +13,11 @@ MIT Licence
 Install [Anaconda](https://www.anaconda.com/download/)
  if you do not have python 3 on your system.
 
-- Chainer 2.0:  `pip install chainer`
+- Chainer > 2:  `pip install chainer`
 
 If you'd like to use GPU, cupy with CUDA support is additionally required.
 
-- OpenCV 2.0: Use Homebrew on mac, and conda on Windows to install.
+- OpenCV 3: Use Homebrew on mac, or download the binary from [here](http://www.lfd.uci.edu/%7Egohlke/pythonlibs/#opencv) and pip on Windows to install.
 
 # Example
 `python camera-recog.py -h`
@@ -25,7 +25,7 @@ for a brief description of command line arguments
 
 `python camera-recog.py`
 opens the camera of your PC and outputs recognised objects captured by it.
-Hit any key to pause, CTRL+C to quit.
+Hit 'p' to pause/resume, 'q' to quit.
 
 `python camera-recog.py -i sample.txt -n 6`
 scans the text file sample.txt and outputs 6 guesses for each image specified in the file.

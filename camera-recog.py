@@ -20,6 +20,8 @@ import argparse
 archs = {
 	'googlenet': L.GoogLeNet,
 	'resnet50': L.ResNet50Layers,
+	'resnet101': L.ResNet101Layers,
+	'resnet152': L.ResNet152Layers,
 	'vgg': L.VGG16Layers,
 }
 
@@ -94,7 +96,7 @@ if __name__ == "__main__":
         exit(0)
 
     # camera input
-    print("Hit any key to pause, CTRL+C to quit")
+    print("Hit 'q' to exit or 'p' to pause")
     windowname = "Recognition"
     cv2.namedWindow(windowname,cv2.WINDOW_AUTOSIZE)
     ip = ImageProcessing()
@@ -107,8 +109,12 @@ if __name__ == "__main__":
             continue
         ip.image = ip.image[:,::-1,:]
         cv2.imshow(windowname, ip.image)
-        if cv2.waitKey(10) >= 0:
+        key = cv2.waitKey(50)
+        if key & 0xFF == ord("q"):  # when q key is pressed
             ip.pause = True
-            while (cv2.waitKey(10) < 0):
-                continue
-            ip.pause = False
+            break
+        elif key & 0xFF == ord("p"):
+            ip.pause = not ip.pause
+			
+    ip.capture.release()
+    cv2.destroyAllWindows()
